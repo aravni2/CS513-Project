@@ -50,15 +50,18 @@ namespace CountCsvColLens
             }
 
             int[] maxes = new int[csv[0].Count];
+            int[] counts = new int[csv[0].Count];
 
             for (int j = 0; j < maxes.Length; j++)
             {
                 maxes[j] = 0;
+                counts[j] = 0;
             }
             for (int j = 1; j < csv.Count; j++)
             {
                 for (int k = 0; k < csv[j].Count; k++)
                 {
+                    counts[k]++;
                     var r = GenerateRegex(csv[j][k]);
                     if (!regexs[k].ContainsKey(r))
                     {
@@ -82,7 +85,7 @@ namespace CountCsvColLens
             {
                 for (int i = 0; i < csv[0].Count; i++)
                 {
-                    sw.WriteLine(csv[0][i]);
+                    sw.WriteLine($"{csv[0][i]} ({counts[i]} rows)");
                     foreach (var reg in regexs[i])
                     {
                         sw.WriteLine($"{reg.Key} ({reg.Value})");
