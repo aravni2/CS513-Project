@@ -40,6 +40,11 @@ namespace DataFilter
             }
         }
 
+        public void Clear()
+        {
+            lines.Clear();
+        }
+
         protected List<CsvLine> lines
         {
             get { return this; }
